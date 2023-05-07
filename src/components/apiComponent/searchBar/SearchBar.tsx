@@ -32,17 +32,29 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     padding: theme.spacing(1, 1, 1, 0),
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create('width'),
-    width: '100%',
+    variation: 'outlined',
+    border: '1px solid lightgray',
+    borderRadius: '4px ',
+    marginBottom: '10px',
+
     [theme.breakpoints.up('sm')]: {
-      width: '12ch',
+      width: '20ch',
       '&:focus': {
-        width: '20ch',
+        width: '25ch',
       },
     },
   },
 }));
 
-export const SearchBar = () => {
+interface IProps {
+  setSearchValue: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export const SearchBar = ({ setSearchValue }: IProps) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(e.target.value);
+  };
+
   return (
     <>
       <Search>
@@ -50,8 +62,12 @@ export const SearchBar = () => {
           <SearchIcon />
         </SearchIconWrapper>
         <StyledInputBase
-          placeholder="Search…"
-          inputProps={{ 'aria-label': 'search', type: 'text' }}
+          placeholder="Search Characters..."
+          inputProps={{
+            'aria-label': 'search',
+            type: 'text',
+            onChange: handleChange,
+          }}
         />
       </Search>
     </>

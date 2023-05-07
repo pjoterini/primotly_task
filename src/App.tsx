@@ -1,7 +1,7 @@
-import { ToolBar } from './components/toolBar/Toolbar';
+import { ApiComponent } from './components/apiComponent/ApiComponent';
 
 function App() {
-  return <ToolBar />;
+  return <ApiComponent />;
 }
 
 export default App;
