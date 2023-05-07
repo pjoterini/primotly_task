@@ -5,7 +5,7 @@ import { Cards } from './cards/Cards';
 import { RequestBtn } from './requestBtn/RequestBtn';
 import { SearchBar } from './searchBar/SearchBar';
 
-export const ApiComponent = () => {
+export const Swapi = () => {
   const [characters, setCharacters] = useState<ICharacter[] | null>(null);
   const [planets, setPlanets] = useState<IPlanet[] | null>(null);
   const [films, setFilms] = useState<IFilm[] | null>(null);

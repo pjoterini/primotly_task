@@ -1,7 +1,7 @@
-import { ApiComponent } from './components/apiComponent/ApiComponent';
+import { Swapi } from './components/swapi/Swapi';
 
 function App() {
-  return <ApiComponent />;
+  return <Swapi />;
 }
 
 export default App;

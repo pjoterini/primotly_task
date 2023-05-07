@@ -19,10 +19,11 @@ export const RequestBtn = ({
   const getCharactersAndPlanets = async () => {
     const charactersData = await getPagedData('people', searchValue);
     const planetsData = await getPagedData('planets');
-    await getFilms(setFilms);
+    const filmsData = await getFilms();
 
     setCharacters(charactersData);
     setPlanets(planetsData);
+    setFilms(filmsData);
   };
 
   return (

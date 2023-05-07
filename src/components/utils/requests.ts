@@ -1,23 +1,23 @@
 import axios from 'axios';
-import { Dispatch, SetStateAction } from 'react';
 import { ApiData, IFilm } from '../interfaces/APIinterfaces';
 
 export const request = axios.create({
   baseURL: import.meta.env.VITE_BASE_URL,
 });
 
-export const getFilms = async (
-  setFilms: Dispatch<SetStateAction<IFilm[] | null>>
-) => {
-  request
+export const getFilms = async () => {
+  let result: IFilm[] | null = null;
+
+  await request
     .get(`/films/`)
     .then(function (response) {
-      console.log(response.data);
-      setFilms(response.data.results);
+      result = [...response.data.results];
     })
     .catch(function (error) {
-      console.log(error);
+      console.error(error);
     });
+
+  return result;
 };
 
 export const getPagedData = async (dataType: string, searchValue = '') => {
@@ -33,13 +33,14 @@ export const getPagedData = async (dataType: string, searchValue = '') => {
         }page=${Counter++}`
       )
       .then(function (response) {
-        console.log(response.data);
-
         !result
           ? (result = [...response.data.results])
           : (result = [...result, ...response.data.results]);
 
         nextPage = response.data.next;
+      })
+      .catch(function (error) {
+        console.error(error);
       });
   } while (nextPage);
 
