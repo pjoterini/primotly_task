@@ -11,7 +11,7 @@ const Search = styled('div')(({ theme }) => ({
   marginLeft: 0,
   width: '100%',
   [theme.breakpoints.up('sm')]: {
-    marginLeft: theme.spacing(1),
+    marginLeft: theme.spacing(0),
     width: 'auto',
   },
 }));
@@ -33,10 +33,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create('width'),
     variation: 'outlined',
-    border: '1px solid lightgray',
+    border: `1px solid ${theme.palette.primary.main}`,
     borderRadius: '4px ',
-    marginBottom: '10px',
-
     [theme.breakpoints.up('sm')]: {
       width: '20ch',
       '&:focus': {
@@ -56,20 +54,18 @@ export const SearchBar = ({ setSearchValue }: IProps) => {
   };
 
   return (
-    <>
-      <Search>
-        <SearchIconWrapper>
-          <SearchIcon />
-        </SearchIconWrapper>
-        <StyledInputBase
-          placeholder="Search Characters..."
-          inputProps={{
-            'aria-label': 'search',
-            type: 'text',
-            onChange: handleChange,
-          }}
-        />
-      </Search>
-    </>
+    <Search>
+      <SearchIconWrapper>
+        <SearchIcon />
+      </SearchIconWrapper>
+      <StyledInputBase
+        placeholder="Search Characters..."
+        inputProps={{
+          'aria-label': 'search',
+          type: 'text',
+          onChange: handleChange,
+        }}
+      />
+    </Search>
   );
 };
